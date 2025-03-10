@@ -1,0 +1,58 @@
+.body-component {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0px 1px;
+  position: relative;
+  width: 100%;
+}
+
+.body-component .text {
+  color: var(--secondary);
+  font-family: var(--body-1-font-family);
+  font-size: var(--body-1-font-size);
+  font-style: var(--body-1-font-style);
+  font-weight: var(--body-1-font-weight);
+  letter-spacing: var(--body-1-letter-spacing);
+  line-height: var(--body-1-line-height);
+  margin: 0;
+  padding: 0;
+}
+
+.body-component .mission {
+  align-self: stretch;
+  color: var(--active);
+  font-family: var(--body-1-font-family);
+  font-size: var(--body-1-font-size);
+  font-style: var(--body-1-font-style);
+  font-weight: var(--body-1-font-weight);
+  letter-spacing: var(--body-1-letter-spacing);
+  line-height: var(--body-1-line-height);
+  margin: 0;
+  position: relative;
+}
+
+.body-component .role {
+  align-self: stretch;
+  color: var(--tertiary);
+  font-family: "Satoshi-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  margin: 0;
+}
+
+.body-component .description {
+  align-self: stretch;
+  color: var(--secondary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+  font-style: var(--body-2-font-style);
+  font-weight: var(--body-2-font-weight);
+  letter-spacing: var(--body-2-letter-spacing);
+  line-height: var(--body-2-line-height);
+  margin: 0;
+}

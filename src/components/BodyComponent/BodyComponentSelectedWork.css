@@ -1,0 +1,70 @@
+.body-component {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0px 1px;
+  position: relative;
+  width: 100%;
+}
+
+.body-component .selected-work {
+  align-items: center;
+  background-color: var(--base);
+  display: flex;
+  gap: 12px;
+  padding: 24px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.body-component .div-wrapper {
+  position: relative;
+  width: 303px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.body-component .text-wrapper-3 {
+  color: var(--active);
+  font-family: "Satoshi-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.body-component .subtitle {
+  color: var(--secondary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+  font-style: var(--body-2-font-style);
+  font-weight: var(--body-2-font-weight);
+  letter-spacing: var(--body-2-letter-spacing);
+  line-height: var(--body-2-line-height);
+}
+
+.body-component .works-carousel {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  /* Hide scrollbar */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure work items in the carousel maintain proper sizing */
+.body-component .works-carousel .work-item {
+  flex: 1;
+  max-width: fit-content;
+  height: fit-content;
+}

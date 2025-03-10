@@ -1,0 +1,488 @@
+/* Container styles */
+.dropdowns-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+}
+
+/* Base dropdown styles */
+.dropdown {
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  overflow: hidden;
+  width: 100%;
+  min-height: 64px;
+  height: 154px;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.dropdown:hover {
+  border-color: var(--active);
+}
+
+/* Open state */
+.dropdown.open {
+  border-color: var(--active);
+  height: calc(100vh - 32px);
+}
+
+/* Header styles */
+.dropdown .head-instance {
+  width: 100%;
+  background-color: var(--base);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+}
+
+.dropdown .head-instance:hover {
+  background-color: var(--hover);
+  cursor: pointer;
+}
+
+.dropdown.open .head-instance {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--inactive);
+}
+
+.dropdown.open .head-instance .arrow {
+  transform: rotate(180deg);
+}
+
+/* Body styles */
+.dropdown .body {
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0;
+  height: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.dropdown.open .body {
+  opacity: 1;
+  visibility: visible;
+  padding: 12px;
+  height: calc(100vh - 96px);
+  overflow-y: auto;
+  pointer-events: all;
+  /* Hide scrollbar but keep functionality */
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animation for body items */
+.dropdown .body-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown.open .body-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger only the two main body items */
+.dropdown.open .body-item:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.dropdown.open .body-item:nth-child(2) {
+  transition-delay: 0.3s;
+}
+
+/* Closing animations */
+.dropdown:not(.open) {
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown:not(.open) .body {
+  opacity: 0;
+  visibility: hidden;
+  padding: 0;
+  height: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.dropdown:not(.open) .body-item {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stagger the closing animation for body items in reverse order */
+.dropdown:not(.open) .body-item:nth-child(2) {
+  transition-delay: 0s;
+}
+
+.dropdown:not(.open) .body-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+/* Body item styles */
+.dropdown .body-item {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: var(--base);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 24px;
+  padding: 0;
+  width: 100%;
+}
+
+.dropdown .body-component {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0px 1px;
+  width: 100%;
+  color: var(--active);
+  font-family: var(--body-1-font-family);
+  font-size: var(--body-1-font-size);
+  font-style: var(--body-1-font-style);
+  font-weight: var(--body-1-font-weight);
+  letter-spacing: var(--body-1-letter-spacing);
+  line-height: var(--body-1-line-height);
+}
+
+.dropdown .body-component-instance {
+  width: 100%;
+}
+
+/* Text styles */
+.dropdown .description {
+  align-self: stretch;
+  color: var(--secondary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+  font-style: var(--body-2-font-style);
+  font-weight: var(--body-2-font-weight);
+  letter-spacing: var(--body-2-letter-spacing);
+  line-height: var(--body-2-line-height);
+}
+
+/* Selected work styles */
+.dropdown .selected-work {
+  align-items: center;
+  background-color: var(--base);
+  display: flex;
+  gap: 12px;
+  padding: 24px 0;
+  width: 100%;
+}
+
+.dropdown .works-carousel {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Carousel item styles */
+.dropdown .carousel-item {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Image styles */
+.dropdown .image {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  padding: 0 12px;
+  width: 100%;
+}
+
+/* CTA styles */
+.dropdown .CTA {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  padding: 24px;
+  width: 100%;
+}
+
+.company {
+  color: var(--active);
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-weight: var(--h2-font-weight);
+}
+
+.role {
+  color: var(--secondary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+}
+
+.period {
+  color: var(--tertiary);
+  font-family: var(--sub-title-1-font-family);
+  font-size: var(--sub-title-1-font-size);
+}
+
+.dropdown-icon {
+  color: var(--tertiary);
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+  transition: transform 0.3s ease;
+}
+
+.dropdown.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown .class {
+  font-family: var(--icon-font-family) !important;
+  font-size: var(--icon-font-size) !important;
+  font-style: var(--icon-font-style) !important;
+  font-weight: var(--icon-font-weight) !important;
+  letter-spacing: var(--icon-letter-spacing) !important;
+  line-height: var(--icon-line-height) !important;
+}
+
+.dropdown .mission {
+  align-self: stretch;
+  color: var(--active);
+  font-family: var(--body-1-font-family);
+  font-size: var(--body-1-font-size);
+  font-style: var(--body-1-font-style);
+  font-weight: var(--body-1-font-weight);
+  letter-spacing: var(--body-1-letter-spacing);
+  line-height: var(--body-1-line-height);
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: left;
+}
+
+.dropdown .body-component-2 {
+  align-self: stretch;
+  background-image: url(../../assets/body-component.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  position: relative;
+  width: 612px;
+}
+
+.dropdown .div-wrapper {
+  align-self: stretch;
+  position: relative;
+  width: 303px;
+}
+
+.dropdown .text-wrapper-4 {
+  color: #ffffe3;
+  font-family: "Satoshi-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  left: 1px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: -1px;
+}
+
+.dropdown .text-wrapper-5 {
+  color: var(--tertiary);
+  font-family: "SF Mono-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.dropdown .text-wrapper-6 {
+  color: #999988;
+  font-family: "SF Mono-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.dropdown .text-wrapper-7 {
+  color: #999988;
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+  font-style: var(--icon-font-style);
+  font-weight: var(--icon-font-weight);
+  letter-spacing: var(--icon-letter-spacing);
+  line-height: var(--icon-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.dropdown .frame-2 {
+  align-self: stretch;
+  background-image: url(../../assets/image.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+.dropdown .about-content {
+  align-items: center;
+  align-self: stretch;
+  border-color: var(--inactive);
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 24px;
+  padding: 24px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.dropdown .about-text {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 24px;
+  padding: 0px 1px;
+  position: relative;
+  text-align: left;
+}
+
+.dropdown .p {
+  align-self: stretch;
+  color: var(--active);
+  font-family: "Satoshi-Medium", Helvetica;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: left;
+}
+
+.dropdown .role-2 {
+  align-self: stretch;
+  color: var(--tertiary);
+  font-family: "Satoshi-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  text-align: left;
+}
+
+.dropdown .about-image {
+  background-color: #ffffff;
+  flex: 1;
+  flex-grow: 1;
+  height: 474px;
+  position: relative;
+}
+
+.dropdown.inactive,
+.dropdown.hover {
+  background-color: var(--base);
+  border-color: var(--inactive);
+  height: auto;
+  overflow: hidden;
+}
+
+/* For hover state specific background/border color */
+.dropdown.hover {
+  background-color: var(--hover);
+  border-color: var(--active);
+}
+
+/* Hide body content in both inactive and hover states */
+.dropdown.inactive .body,
+.dropdown.hover .body,
+.dropdown:not(.open) .body {
+  height: 0;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+  transform: scaleY(0);
+}
+
+.dropdown.active {
+  background-color: var(--base);
+  border-color: var(--active);
+  overflow: hidden;
+}
+
+.dropdown.active .body {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add rotation animation for the arrow in the head */
+.dropdown .text-wrapper-3 {
+  transition: transform 0.3s ease-in-out;
+}
+
+.dropdown.active .text-wrapper-3 {
+  transform: rotate(180deg);
+}
+
+.dropdown .head-instance:hover {
+  cursor: pointer;
+}
+
+
+

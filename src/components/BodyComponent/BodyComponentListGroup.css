@@ -1,0 +1,12 @@
+.body-component {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0px 1px;
+  position: relative;
+}
+
+.body-component .list-group-instance {
+  flex: 0 0 auto !important;
+}

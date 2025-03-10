@@ -1,0 +1,20 @@
+.list-group {
+  /* Add your list group styles here */
+}
+
+.list-item-group {
+  align-items: flex-start;
+  background-color: var(--base);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0px 16px;
+  position: relative;
+  width: 608px;
+}
+
+.list-item-group .list-item-instance {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+} 

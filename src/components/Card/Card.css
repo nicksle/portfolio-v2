@@ -1,0 +1,218 @@
+.card {
+  align-items: flex-start;
+  background-color: var(--base);
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  width: fit-content;
+}
+
+.card .index {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  padding: 0px;
+  margin-bottom: 8px;
+}
+
+.card .text-wrapper {
+  color: var(--active);
+  font-family: "SF Mono-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.card .card-item {
+  align-items: flex-start;
+  display: flex;
+  padding-left: 8px;
+  position: relative;
+  width: 389px;
+  height: 540px;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .card-frame {
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+  width: fit-content;
+}
+
+.card .head {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.card .content {
+  align-items: flex-start;
+  border-top: 1px solid var(--inactive);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 24px 48px;
+  flex: 1;
+}
+
+.card .frame {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.card .icon {
+  border: 1px solid var(--inactive);
+  height: 80px;
+  width: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .icon .text-wrapper {
+  color: var(--tertiary);
+  font-family: "SF Compact-Thin", Helvetica;
+  font-size: 53.8px;
+  font-weight: 100;
+}
+
+.card .title {
+  color: var(--active);
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-style: var(--h2-font-style);
+  font-weight: var(--h2-font-weight);
+  letter-spacing: var(--h2-letter-spacing);
+  line-height: var(--h2-line-height);
+}
+
+.card .description {
+  color: var(--secondary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+  font-style: var(--body-2-font-style);
+  font-weight: var(--body-2-font-weight);
+  letter-spacing: var(--body-2-letter-spacing);
+  line-height: var(--body-2-line-height);
+  max-width: 532px;
+}
+
+.card .CTA {
+  align-items: center;
+  border-top: 1px solid var(--inactive);
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  width: 100%;
+}
+
+.card .text-wrapper-2 {
+  color: var(--tertiary);
+  font-family: var(--sub-title-1-font-family);
+  font-size: var(--sub-title-1-font-size);
+  font-style: var(--sub-title-1-font-style);
+  font-weight: var(--sub-title-1-font-weight);
+  letter-spacing: var(--sub-title-1-letter-spacing);
+  line-height: var(--sub-title-1-line-height);
+  transition: transform 0.3s ease;
+}
+
+.card .text-wrapper-3 {
+  color: var(--tertiary);
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+  font-style: var(--icon-font-style);
+  font-weight: var(--icon-font-weight);
+  letter-spacing: var(--icon-letter-spacing);
+  line-height: var(--icon-line-height);
+  margin-top: -0.50px;
+  position: relative;
+  transform: rotate(-180.00deg);
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.card .body {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: -1px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.card[data-state="collapsed"] .body {
+  width: 0;
+  opacity: 0;
+}
+
+.card[data-state="expanded"] .body {
+  width: 100%;
+  opacity: 1;
+}
+
+.card .image-carousel-wrapper {
+  align-items: flex-start;
+  background-color: var(--base);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+}
+
+.card .image-carousel-wrapper::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.card .image-carousel {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 12px;
+  position: relative;
+}
+
+.card .image {
+  align-self: stretch;
+  background-color: #f0f0f0;
+  position: relative;
+  width: 1160px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.card .image-2 {
+  align-self: stretch;
+  background-color: #f0f0f0;
+  position: relative;
+  width: 1160px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}

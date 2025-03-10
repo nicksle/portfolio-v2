@@ -1,0 +1,68 @@
+.dropdown-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dropdown-group .dropdown {
+  width: 100%;
+  margin-bottom: -1px; /* Collapse borders between dropdowns */
+}
+
+/* Ensure proper spacing for the last dropdown */
+.dropdown-group .dropdown:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-group .dropdown-instance {
+  align-self: stretch !important;
+  width: 100% !important;
+  margin-bottom: 16px;
+}
+
+.dropdowns-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+/* Add negative margin to collapse borders between dropdowns */
+.dropdowns-container .dropdown + .dropdown {
+  margin-top: -1px;
+}
+
+.dropdown-wrapper {
+  width: 100%;
+  margin: 0;
+}
+
+/* Make active dropdown sticky */
+.dropdown-wrapper .dropdown.active {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Remove sticky positioning from head when dropdown is active */
+.dropdown-wrapper .dropdown.active .head-instance {
+  position: relative !important;
+}
+
+/* Regular head styling for inactive dropdowns */
+.dropdown-wrapper .dropdown:not(.active) .head-instance {
+  position: relative !important;
+}
+
+.dropdown-wrapper .dropdown {
+  border-bottom: none;
+}
+
+.dropdown-wrapper:last-child .dropdown {
+  border-bottom: 1px solid;
+} 

@@ -1,0 +1,98 @@
+.image-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  overflow: hidden;
+}
+
+.image-carousel.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-carousel .placeholder {
+  color: var(--tertiary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+}
+
+.carousel-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--base);
+  border: 1px solid var(--inactive);
+  color: var(--tertiary);
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease-in-out;
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+}
+
+.carousel-button:hover {
+  background: var(--inactive);
+  color: var(--active);
+}
+
+.carousel-button.prev {
+  left: 16px;
+}
+
+.carousel-button.next {
+  right: 16px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--inactive);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.indicator.active {
+  background: var(--active);
+  width: 24px;
+} 

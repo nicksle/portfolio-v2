@@ -1,0 +1,27 @@
+.card-group {
+  align-items: flex-start;
+  background-color: var(--base);
+  display: flex;
+  gap: 32px;
+  position: relative;
+  width: fit-content;
+}
+
+/* Layout variations */
+.card-group[data-layout="horizontal"] {
+  flex-direction: column;
+}
+
+.card-group[data-layout="vertical"] {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card-group .card-instance {
+  width: fit-content !important;
+}
+
+/* Card width in vertical layout */
+.card-group[data-layout="vertical"] .card-instance {
+  flex: 0 0 auto;
+}

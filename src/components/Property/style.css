@@ -1,0 +1,48 @@
+.property {
+  align-items: flex-start;
+  background-color: var(--base);
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.property .index {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.property .text-wrapper-3 {
+  color: var(--active);
+  font-family: "SF Mono-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.property .card-item-instance {
+  flex: 0 0 auto !important;
+  width: 1200px !important;
+}
+
+.property .design-component-instance-node {
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  width: unset !important;
+}
+
+.property .card-item-2 {
+  background-image: url(./image-3.png) !important;
+}
+
+.property .card-item-3 {
+  background-image: url(./image-4.png) !important;
+} 

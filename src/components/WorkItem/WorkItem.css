@@ -1,0 +1,188 @@
+.work-item {
+  align-items: flex-start;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  position: relative;
+  width: fit-content;
+  min-width: 460.5px;
+  transition: border-color 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s ease;
+}
+
+.dropdown.open .work-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animations for multiple work items */
+.dropdown.open .work-item:nth-child(1) {
+  transition-delay: 0.3s;
+}
+
+.dropdown.open .work-item:nth-child(2) {
+  transition-delay: 0.4s;
+}
+
+/* Ensure animations only play when opening */
+.dropdown:not(.open) .work-item {
+  transition: none;
+}
+
+.work-item:hover {
+  border-color: var(--active);
+}
+
+.work-item .head {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 8px;
+  padding: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.work-item .info-top {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.work-item .text-wrapper {
+  color: var(--tertiary);
+  font-family: "SF Mono-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.work-item .image {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px;
+  justify-content: center;
+  padding: 0 12px;
+  position: relative;
+  width: 100%;
+}
+
+.work-item .frame {
+  align-self: stretch;
+  flex: 1;
+  flex-grow: 1;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.work-item .workbody {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 24px 32px;
+  position: relative;
+  width: 100%;
+}
+
+.work-item .title {
+  align-self: stretch;
+  color: var(--active);
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-style: var(--h2-font-style);
+  font-weight: var(--h2-font-weight);
+  letter-spacing: var(--h2-letter-spacing);
+  line-height: var(--h2-line-height);
+  margin-top: -1px;
+  position: relative;
+}
+
+.work-item .description {
+  align-self: stretch;
+  color: var(--secondary);
+  font-family: var(--body-2-font-family);
+  font-size: var(--body-2-font-size);
+  font-style: var(--body-2-font-style);
+  font-weight: var(--body-2-font-weight);
+  letter-spacing: var(--body-2-letter-spacing);
+  line-height: var(--body-2-line-height);
+  position: relative;
+}
+
+.work-item .CTA {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 24px;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.work-item .CTA:hover {
+  border-color: var(--active);
+  cursor: pointer;
+}
+
+.work-item .div {
+  color: var(--tertiary);
+  font-family: "SF Mono-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+  transition: color 0.3s ease;
+}
+
+.work-item .CTA:hover .div,
+.work-item .CTA:hover .text-wrapper-2 {
+  color: var(--active);
+}
+
+.work-item .text-wrapper-2 {
+  color: var(--tertiary);
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+  font-style: var(--icon-font-style);
+  font-weight: var(--icon-font-weight);
+  letter-spacing: var(--icon-letter-spacing);
+  line-height: var(--icon-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+  transition: color 0.3s ease;
+} 

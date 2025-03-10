@@ -1,0 +1,59 @@
+.body-item {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: var(--base);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 24px;
+  padding: 0;
+  width: 100%;
+}
+
+.body-item.column {
+  flex-direction: column;
+}
+
+.body-item.row {
+  flex-direction: row;
+}
+
+.body-item.row .body-item-content {
+  flex: 1;
+  min-width: 0; /* Prevent flex items from overflowing */
+}
+
+/* Animation for content within body items */
+.body-item .body-component {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dropdown.open .body-item .body-component {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animations for multiple components */
+.body-item .body-component:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.body-item .body-component:nth-child(2) {
+  transition-delay: 0.3s;
+}
+
+/* Ensure animations only play when opening */
+.dropdown:not(.open) .body-item .body-component {
+  transition: none;
+}
+
+/* Ensure images in row layout maintain aspect ratio */
+.body-item.row .body-component .image-container {
+  height: 100%;
+  padding-top: 0;
+}
+
+.body-item.row .body-component {
+  height: 100%;
+}

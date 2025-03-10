@@ -1,0 +1,37 @@
+.list {
+  align-items: flex-start;
+  background-color: var(--base);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 608px;
+}
+
+.list .div-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.list .text-wrapper-2 {
+  color: var(--active);
+  font-family: "SF Mono-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.list .list-item-group-instance {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+} 
