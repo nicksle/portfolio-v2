@@ -48,10 +48,7 @@ export const Work = () => {
     <div ref={containerRef} className="work" style={{ height: '200vh' }}>
       <div ref={workContentRef} className="work-content">
         <p className="work-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
-        <p className="work-text body2">
-          Additional text with body2 style goes here. This will appear 16px below the text above.
+          Dumb little f-word, who makes dumb little faggy designs and stuff. And says shit like: "sucking dick and cock?, and you did it at my birthday!"
         </p>
         <div className="work-carousel">
           {/* Placeholder for carousel images */}
