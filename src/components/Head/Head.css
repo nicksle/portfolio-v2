@@ -41,7 +41,7 @@
   font-family: var(--icon-font-family);
   font-size: var(--icon-font-size);
   color: var(--tertiary);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .head .div {
@@ -118,4 +118,37 @@
   margin-top: -1.00px;
   position: relative;
   width: fit-content;
+}
+
+.head-top.animating,
+.title.animating,
+.head-bottom.animating {
+  animation: headContentFade 0.5s ease-in-out;
+}
+
+@keyframes headContentFade {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.head-top.animating {
+  animation-delay: 0s;
+}
+
+.title.animating {
+  animation-delay: 0.05s;
+}
+
+.head-bottom.animating {
+  animation-delay: 0.1s;
 } 

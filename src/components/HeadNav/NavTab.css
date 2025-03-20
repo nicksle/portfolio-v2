@@ -1,0 +1,331 @@
+.nav-tab {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--body-1-font-family);
+  font-size: var(--body-1-font-size);
+  color: var(--secondary);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-tab:hover {
+  color: var(--active);
+}
+
+.nav-tab.active {
+  color: var(--active);
+}
+
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--active);
+  transition: transform 0.3s ease;
+}
+
+.nav-tab:not(.active)::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--active);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-tab:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active state styles */
+.navtab-active {
+  align-items: flex-start;
+  background-color: var(--active);
+  border: 1px solid;
+  border-color: var(--active);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: auto;
+}
+
+.navtab-active .top {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.navtab-active .text-wrapper {
+  color: var(--base);
+  flex: 0 0 auto;
+  font-family: var(--sub-title-1-font-family);
+  font-size: var(--sub-title-1-font-size);
+  font-style: var(--sub-title-1-font-style);
+  font-weight: var(--sub-title-1-font-weight);
+  letter-spacing: var(--sub-title-1-letter-spacing);
+  line-height: var(--sub-title-1-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-align: left;
+}
+
+.navtab-active .title {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.navtab-active .active {
+  color: var(--base);
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+  font-style: var(--icon-font-style);
+  font-weight: var(--icon-font-weight);
+  letter-spacing: var(--icon-letter-spacing);
+  line-height: var(--icon-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+/* Update the active state icon */
+.navtab-active .bottom .active {
+  color: var(--base);
+  width: 8px; /* Set size for circle */
+  height: 8px;
+  background-color: var(--base);
+  border-radius: 50%;
+  position: relative;
+  animation: pulse 2s infinite;
+}
+
+/* Remove the existing icon character */
+.navtab-active .bottom .active::before {
+  content: '';
+}
+
+/* Create pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
+  }
+  
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Inactive state styles */
+.navtab-inactive {
+  align-items: flex-start;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: auto;
+}
+
+.navtab-inactive .top {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.navtab-inactive .text-wrapper {
+  color: var(--tertiary);
+  flex: 0 0 auto;
+  font-family: var(--sub-title-1-font-family);
+  font-size: var(--sub-title-1-font-size);
+  font-style: var(--sub-title-1-font-style);
+  font-weight: var(--sub-title-1-font-weight);
+  letter-spacing: var(--sub-title-1-letter-spacing);
+  line-height: var(--sub-title-1-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-align: left;
+}
+
+.navtab-inactive .title {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.navtab-inactive .div {
+  color: var(--secondary);
+  font-family: "Satoshi-Medium", Helvetica;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.navtab-inactive .bottom {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.navtab-inactive .text-wrapper-2 {
+  color: var(--tertiary);
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-font-size);
+  font-style: var(--icon-font-style);
+  font-weight: var(--icon-font-weight);
+  letter-spacing: var(--icon-letter-spacing);
+  line-height: var(--icon-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+/* Shared bottom styles */
+.navtab-active .bottom,
+.navtab-inactive .bottom {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+/* Hover effects */
+.navtab-inactive:hover {
+  border-color: var(--active);
+  background-color: var(--hover);
+}
+
+/* Shared title styles for both active and inactive states */
+.navtab-active .title .text-wrapper,
+.navtab-inactive .title .div {
+  color: var(--base); /* Will be overridden for inactive state */
+  font-family: "Satoshi-Medium", Helvetica;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: auto;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Override color for inactive state */
+.navtab-inactive .title .div {
+  color: var(--secondary);
+}
+
+/* Add styles for the active circle */
+.navtab-active .active-circle {
+  width: 8px;
+  height: 8px;
+  background-color: var(--base);
+  border-radius: 50%;
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Inactive circle */
+.navtab-inactive .inactive-circle {
+  width: 8px;
+  height: 8px;
+  background-color: var(--tertiary);
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Ensure nothing is causing the elements to shift */
+.navtab-active,
+.navtab-inactive {
+  align-items: center; /* Center items vertically */
+  text-align: center;
+}
+
+/* Remove any padding that might cause misalignment */
+.navtab-active .title,
+.navtab-inactive .title {
+  padding: 0 !important;
+} 

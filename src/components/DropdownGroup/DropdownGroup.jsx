@@ -1,28 +1,44 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown } from '../Dropdown/Dropdown';
+import Dropdown from '../Dropdown/Dropdown';
 import './DropdownGroup.css';
 
-export const DropdownGroup = ({ items }) => {
-  const [openDropdown, setOpenDropdown] = useState(null);
+export const DropdownGroup = ({ items, className, shouldCloseDropdowns, onDropdownOpen, onDropdownClose }) => {
+  const [openIndex, setOpenIndex] = useState(-1);
   const groupRef = useRef(null);
 
-  const handleToggle = (id) => {
-    setOpenDropdown(openDropdown === id ? null : id);
+  useEffect(() => {
+    if (shouldCloseDropdowns) {
+      setOpenIndex(-1);
+    }
+  }, [shouldCloseDropdowns]);
+
+  const handleDropdownClick = (index) => {
+    const newIndex = openIndex === index ? -1 : index;
+    
+    if (newIndex === -1 && onDropdownClose) {
+      // Dropdown is being closed
+      onDropdownClose(index);
+    } else if (newIndex !== -1 && onDropdownOpen) {
+      // Dropdown is being opened
+      onDropdownOpen(index);
+    }
+    
+    setOpenIndex(newIndex);
   };
 
   return (
-    <div ref={groupRef} className="dropdown-group">
+    <div ref={groupRef} className={`dropdown-group ${className || ''}`}>
       {items.map((item) => (
         <Dropdown
           key={item.id}
-          isOpen={openDropdown === item.id}
-          onToggle={() => handleToggle(item.id)}
+          isOpen={openIndex === item.id}
+          onToggle={() => handleDropdownClick(item.id)}
           company={item.company}
           role={item.role}
           period={item.period}
           description={item.description}
-          index={item.index}
+          index={String(item.index)}
           bodyItems={item.bodyItems}
         />
       ))}
@@ -55,6 +71,10 @@ DropdownGroup.propTypes = {
       ).isRequired
     })
   ).isRequired,
+  className: PropTypes.string,
+  shouldCloseDropdowns: PropTypes.bool.isRequired,
+  onDropdownOpen: PropTypes.func,
+  onDropdownClose: PropTypes.func,
 };
 
 export default DropdownGroup; 

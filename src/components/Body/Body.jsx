@@ -14,19 +14,21 @@ export const Body = ({
         // Determine which component to render based on layout
         if (item.layout === "row") {
           return (
-            <BodyItemRow
-              key={index}
-              layout="row"
-              content={item.content}
-            />
+            <div key={index} className="body-item">
+              <BodyItemRow
+                layout="row"
+                content={item.content}
+              />
+            </div>
           );
         } else {
           return (
-            <BodyItem
-              key={index}
-              layout="column"
-              content={item.content}
-            />
+            <div key={index} className="body-item">
+              <BodyItem
+                layout="column"
+                content={item.content}
+              />
+            </div>
           );
         }
       })}

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { BodyComponentText } from "./variants/BodyComponentText";
-import { BodyComponentImage } from "./variants/BodyComponentImage";
-import { BodyComponentSelectedWork } from "./variants/BodyComponentSelectedWork";
+import { BodyComponentText } from "./BodyComponentText";
+import { BodyComponentImage } from "./BodyComponentImage";
+import { BodyComponentSelectedWork } from "./BodyComponentSelectedWork";
 import { BodyComponentListGroup } from "./variants/BodyComponentListGroup";
 import { BodyComponentCardGroup } from "./variants/BodyComponentCardGroup";
 

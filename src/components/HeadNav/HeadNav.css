@@ -1,0 +1,20 @@
+.head-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-header {
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+  position: relative;
+  gap: 0;
+  height: auto;
+  min-height: 0;
+}
+
+/* Make each NavTab item flex grow equally */
+.nav-header > * {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
+} 

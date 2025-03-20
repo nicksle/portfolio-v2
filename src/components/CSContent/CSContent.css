@@ -1,0 +1,48 @@
+.cs-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 24px auto 0;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: var(--base);
+}
+
+.dropdown-wrapper {
+  flex: 1;
+  position: relative;
+  height: calc(100vh - 144px);
+  width: 100%;
+  margin-top: 0;
+}
+
+/* You might need to update your Dropdown component's CSS as well */
+.dropdown {
+  height: 100%;
+  max-height: calc(100vh - 144px);
+  overflow-y: auto;
+}
+
+.dropdowns-container {
+  position: relative;
+  height: 80vh; /* Adjust this value based on your needs */
+  width: 100%;
+}
+
+.stacked-dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.stacked-dropdown.active {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 2;
+} 

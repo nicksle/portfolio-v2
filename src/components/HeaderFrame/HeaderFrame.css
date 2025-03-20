@@ -1,0 +1,584 @@
+@keyframes expandHeaderFrame {
+  0% {
+    width: 300.75px;  /* Same as .section width */
+    height: 150.88px; /* Same as .section height */
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    width: 1200px;
+    height: 452px;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 300.75px;
+    margin-left: 0; /* Start with no horizontal offset */
+  }
+  to {
+    width: 1200px;
+    margin-left: 0; /* End with no horizontal offset */
+  }
+}
+
+@keyframes expandHeight {
+  from {
+    height: 150.88px;
+  }
+  to {
+    height: 452px; /* Height of the info div (approximately) */
+  }
+}
+
+/* New animation for sliding content up */
+@keyframes slideContentUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-452px); /* Move content up by height of info */
+  }
+}
+
+/* Animation for expanding to show both info-2 and header */
+@keyframes expandToInfo2Height {
+  from {
+    height: 452px; /* Match section height */
+  }
+  to {
+    height: 658px;
+  }
+}
+
+.header-frame {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 300.75px;
+  height: 150.88px; /* Match section height */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+/* Content container should match the header-frame size exactly in initial state */
+.header-frame .content-container {
+  display: flex;
+  flex-direction: column;
+  width: 1200px !important;
+  height: auto;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  gap: 0 !important;
+  /* Remove any default transitions */
+  transition: none;
+}
+
+/* Initial state should only show the section part of content */
+.header-frame .info,
+.header-frame .info-2,
+.header-frame .header {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add animations to the mounted state with a 1s delay */
+.header-frame.mounted {
+  width: 1200px;
+  height: 452px;
+  transition: 
+    width 1s cubic-bezier(0.4, 0.0, 0.2, 1.0) 1s, 
+    height 1s cubic-bezier(0.4, 0.0, 0.2, 1.0) 2s;
+}
+
+/* Update content container when mounted with matching delays */
+.header-frame.mounted .content-container {
+  width: 1200px;
+  transition: width 1s cubic-bezier(0.4, 0.0, 0.2, 1.0) 1s;
+}
+
+/* Style the header as a row */
+.header-frame .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: 56px;
+  margin-top: 0 !important;
+  border: 1px solid var(--inactive);
+}
+
+/* Style the logo to take remaining space */
+.header-frame .header .logo {
+  -webkit-backdrop-filter: blur(32px) brightness(100%);
+  backdrop-filter: blur(32px) brightness(100%);
+  background-color: #0e0e10;
+  border: 1px solid var(--inactive);
+  flex: 1;
+  position: relative;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+/* Logo active state - match div-wrapper-2 active state */
+.header-frame .header .logo.active {
+  border-color: var(--active);
+  background-color: var(--active);
+}
+
+/* Logo hover state */
+.header-frame .header .logo:not(.active):hover {
+  border-color: var(--active);
+  z-index: 99999;
+  position: relative;
+}
+
+/* Style the navigation items */
+.header-frame .header .div-wrapper-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 16px 32px;
+  box-sizing: border-box;
+  margin-left: -1px;
+  border: 1px solid var(--inactive);
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+/* Style for active state */
+.header-frame .header .div-wrapper-2.active {
+  border-color: var(--active);
+  background-color: var(--active);
+}
+
+/* Text color changes */
+.header-frame .header .div-wrapper-2 .text-wrapper-4 {
+  color: #ffffe3;
+  transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+.header-frame .header .div-wrapper-2.active .text-wrapper-4 {
+  color: var(--base); /* Dark background color */
+}
+
+/* Navigation item hover state */
+.header-frame .header .div-wrapper-2:not(.active):hover {
+  border-color: var(--active);
+  z-index: 99999;
+  position: relative;
+}
+
+/* Info2 reveal animation */
+.header-frame.show-info2 {
+  width: 1200px !important;
+  animation: expandToInfo2Height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0) forwards;
+}
+
+/* Then translate content after expansion */
+.header-frame.show-info2 .content-container {
+  transform: translateY(-452px);
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  transition-delay: 0.8s;
+}
+
+/* Remove any potential transition conflicts from content-container */
+.header-frame .content-container {
+  display: flex;
+  flex-direction: column;
+  width: 1200px !important;
+  height: auto;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  gap: 0 !important;
+  /* Remove any default transitions */
+  transition: none;
+}
+
+.header-frame .info {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 1200px;
+}
+
+.header-frame .row {
+  align-items: flex-end;
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 1200.25px;
+}
+
+.header-frame .column {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 300.75px;
+  position: relative;
+  width: 900.25px;
+}
+
+.header-frame .div {
+  align-items: flex-end;
+  align-self: stretch;
+  display: flex;
+  height: 150.88px;
+  position: relative;
+  width: 100%;
+}
+
+.header-frame .section {
+  background-color: var(--active);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 150.88px;
+  position: relative;
+  width: 300.75px;
+}
+
+.header-frame .div-wrapper {
+  align-items: center;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  gap: 10px;
+  height: 150.88px;
+  margin-left: -1px;
+  padding: 52px 48px;
+  position: relative;
+  width: 450.62px;
+}
+
+.header-frame .text-wrapper {
+  color: #ffffff;
+  font-family: "Satoshi-Medium", Helvetica;
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -0.56px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.header-frame .section-2 {
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 150.88px;
+  margin-left: -1px;
+  position: relative;
+  width: 150.88px;
+}
+
+.header-frame .row-2 {
+  align-items: flex-end;
+  display: flex;
+  height: 150.88px;
+  margin-top: -1px;
+  position: relative;
+  width: 900.25px;
+}
+
+.header-frame .section-3 {
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 150.88px;
+  position: relative;
+  width: 150.88px;
+}
+
+.header-frame .section-4 {
+  align-items: center;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  gap: 10px;
+  height: 150.88px;
+  margin-left: -1px;
+  padding: 52px 48px;
+  position: relative;
+  width: 600.5px;
+}
+
+.header-frame .column-2 {
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 300.75px;
+  margin-left: -1px;
+  position: relative;
+  width: 301px;
+}
+
+.header-frame .row-3 {
+  align-items: flex-end;
+  display: flex;
+  height: 150.88px;
+  margin-top: -1px;
+  position: relative;
+  width: 1200.25px;
+}
+
+.header-frame .section-5 {
+  align-items: center;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  gap: 10px;
+  height: 150.88px;
+  margin-left: -1px;
+  padding: 52px 48px;
+  position: relative;
+  width: 750.62px;
+}
+
+.header-frame .section-6 {
+  background-color: var(--active);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 150.88px;
+  margin-left: -1px;
+  position: relative;
+  width: 150.88px;
+}
+
+.header-frame .info-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 601.5px;
+  margin-top: -1px;
+  position: relative;
+  width: 1200.25px;
+}
+
+.header-frame .row-4 {
+  align-items: center;
+  display: flex;
+  height: 301.75px;
+  position: relative;
+  width: 1200.25px;
+}
+
+.header-frame .row-5 {
+  align-items: flex-end;
+  display: flex;
+  height: 150.88px;
+  position: relative;
+  width: 900.25px;
+}
+
+.header-frame .section-7 {
+  align-items: center;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  gap: 10px;
+  height: 150.88px;
+  padding: 52px 48px;
+  position: relative;
+  width: 750.38px;
+}
+
+.header-frame .section-8 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  gap: 10px;
+  margin-left: -1px;
+  padding: 52px 48px;
+  position: relative;
+  width: 600.5px;
+}
+
+.header-frame .column-3 {
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 301.75px;
+  margin-left: -1px;
+  position: relative;
+  width: 301px;
+}
+
+.header-frame .section-9 {
+  background-color: var(--active);
+  border: 1px solid;
+  border-color: var(--inactive);
+  height: 150.88px;
+  position: relative;
+  width: 150.88px;
+}
+
+.header-frame .text-wrapper-2 {
+  color: var(--base);
+  font-family: "Satoshi-Medium", Helvetica;
+  font-size: 64px;
+  font-weight: 500;
+  left: 48px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 51px;
+  white-space: nowrap;
+}
+
+.header-frame .section-10 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--base);
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: flex;
+  gap: 10px;
+  margin-left: -1px;
+  padding: 52px 48px;
+  position: relative;
+  width: 750.62px;
+}
+
+.header-frame .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Satoshi-Medium", Helvetica;
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -8.38px;
+  margin-top: -0.56px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.header-frame .logo {
+  -webkit-backdrop-filter: blur(32px) brightness(100%);
+  backdrop-filter: blur(32px) brightness(100%);
+  background-color: var(--active);
+  border: 1px solid;
+  border-color: var(--inactive);
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+  height: 100%;
+}
+
+.header-frame .div-wrapper-2 {
+  -webkit-backdrop-filter: blur(32px) brightness(100%);
+  align-items: center;
+  backdrop-filter: blur(32px) brightness(100%);
+  background-color: #0e0e10;
+  border: 1px solid;
+  border-color: var(--inactive);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-left: -1px;
+  padding: 16px 32px;
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.header-frame .text-wrapper-4 {
+  color: #ffffe3;
+  font-family: "Satoshi-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.intro {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* Fix specific margin issue between info and info-2 */
+.header-frame .info,
+.header-frame .info-2 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Make sure header is properly positioned without gap */
+.header-frame .header {
+  margin-top: 0 !important;
+}
+
+/* Ensure the height animation works properly */
+.header-frame.show-info2 {
+  animation: expandToInfo2Height 0.8s ease-out forwards;
+  height: 658px; /* Ensure the final height is set */
+}
+
+/* Make sure all content remains visible during the transition */
+.header-frame .content-container > * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* When work is clicked, make HeaderFrame fixed and translate up */
+.header-frame.show-work {
+  position: fixed; /* Change to fixed position */
+  top: 50%; /* Keep the percentage-based positioning */
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 620px));
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+.header-frame.show-work .info-2 {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+/* Ensure header stays visible */
+.header-frame .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: 56px;
+  margin-top: 0 !important;
+}
+
+/* Ensure header items are positioned correctly */
+.header-frame .header .logo,
+.header-frame .header .div-wrapper-2 {
+  margin-left: -1px; /* Maintain border overlap */
+  position: relative; /* Enable z-index */
+}

@@ -1,0 +1,120 @@
+/* Copy the contents of your Work.css file here */ 
+
+.casestudy1 {
+  max-width: 1200px;
+  margin: 0 auto; /* This centers the component horizontally */
+  position: relative;
+  width: 100%;
+  overflow: visible; /* Allow overflow */
+  min-height: 150vh;
+}
+
+.casestudy1-content {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 48px;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  will-change: transform, opacity;
+  z-index: 10; /* Lower than cs-content */
+}
+
+.casestudy1-text-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.casestudy1-title {
+  font-family: var(--h1-font-family);
+  font-size: var(--h1-font-size);
+  font-style: var(--h1-font-style);
+  font-weight: var(--h1-font-weight);
+  letter-spacing: var(--h1-letter-spacing);
+  line-height: var(--h1-line-height);
+  text-align: left;
+  width: 100%;
+}
+
+.casestudy1-text {
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-style: var(--h2-font-style);
+  font-weight: var(--h2-font-weight);
+  letter-spacing: var(--h2-letter-spacing);
+  line-height: var(--h2-line-height);
+  text-align: left;
+  width: 100%;
+}
+
+.casestudy1-image {
+  width: 100%;
+  height: 600px;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 300px; /* Adjust as needed */
+  background-color: #f0f0f0; /* Placeholder color */
+  border-radius: 8px;
+}
+
+.cs-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  will-change: transform, top;
+  z-index: 20; /* Higher than casestudy1-content */
+}
+
+/* Override the padding on cs-content */
+.cs-content-container .cs-content {
+  padding: 0 !important;
+}
+
+.work-experience {
+  position: fixed;
+  top: 150vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  will-change: top;
+  z-index: 2;
+  backface-visibility: hidden;
+  max-height: calc(100vh - 96px); /* 64px header + 32px padding */
+  overflow-y: auto;
+  opacity: 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 32px; /* Add some bottom padding for content */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.experience-content {
+  width: 100%;
+  min-height: 400px;
+  background-color: var(--base);
+  border: 1px solid var(--inactive);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* For small screens, modify the layout to be more mobile-friendly */
+@media (max-width: 768px) {
+  .casestudy1-content {
+    flex-direction: column;
+    gap: 32px;
+  }
+} 

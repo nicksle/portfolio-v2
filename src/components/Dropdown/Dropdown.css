@@ -10,15 +10,20 @@
 
 /* Base dropdown styles */
 .dropdown {
+  position: relative;
+  width: 100%;
   background-color: var(--base);
   border: 1px solid var(--inactive);
   overflow: hidden;
-  width: 100%;
   min-height: 64px;
-  height: 154px;
-  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease,
+              opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  will-change: scroll-position, height, opacity, transform;
   scroll-behavior: smooth;
 }
 
@@ -29,7 +34,11 @@
 /* Open state */
 .dropdown.open {
   border-color: var(--active);
-  height: calc(100vh - 32px);
+  overflow-y: auto;
+  position: relative !important;
+  height: 80vh;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Header styles */
@@ -40,6 +49,7 @@
   cursor: pointer;
   position: relative;
   z-index: 20;
+  opacity: inherit !important;
 }
 
 .dropdown .head-instance:hover {
@@ -61,24 +71,21 @@
 /* Body styles */
 .dropdown .body {
   position: relative;
-  z-index: 10;
-  opacity: 0;
-  visibility: hidden;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 0;
-  height: 0;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, opacity;
-  pointer-events: none;
+  padding: 12px;
+  height: auto;
+  overflow-y: visible !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .dropdown.open .body {
   opacity: 1;
   visibility: visible;
-  padding: 12px;
-  height: calc(100vh - 96px);
+  padding: 0 12px 0 12px !important;
+  height: auto;
   overflow-y: auto;
   pointer-events: all;
   /* Hide scrollbar but keep functionality */
@@ -88,13 +95,16 @@
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
-/* Animation for body items */
-.dropdown .body-item {
+/* Body item animations */
+/* .dropdown .body-item {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(10px);
+  transition: opacity 0.3s ease,
+              transform 0.3s ease;
 }
 
 .dropdown.open .body-item {
@@ -102,26 +112,26 @@
   transform: translateY(0);
 }
 
-/* Stagger only the two main body items */
+/* Stagger animations */
 .dropdown.open .body-item:nth-child(1) {
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
 }
 
 .dropdown.open .body-item:nth-child(2) {
-  transition-delay: 0.3s;
+  transition-delay: 0.2s;
 }
 
 /* Closing animations */
 .dropdown:not(.open) {
-  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown:not(.open) .body {
   opacity: 0;
   visibility: hidden;
   padding: 0;
-  height: 0;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
 
@@ -139,6 +149,7 @@
 .dropdown:not(.open) .body-item:nth-child(1) {
   transition-delay: 0.1s;
 }
+*/
 
 /* Body item styles */
 .dropdown .body-item {
@@ -482,6 +493,263 @@
 
 .dropdown .head-instance:hover {
   cursor: pointer;
+}
+
+.dropdown-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 999 !important;
+  background-color: var(--base) !important;
+  width: 100%;
+  transition: opacity 0.1s ease-out !important;
+  min-height: 154px;
+}
+
+.dropdown-header .head-instance {
+  will-change: opacity;
+  transition: opacity 0.1s linear !important;
+}
+
+.dropdown-body {
+  position: relative;
+  z-index: 1;
+  max-height: calc(100vh - 100px); /* adjust based on your header height */
+  overflow-y: auto;
+}
+
+.dropdown-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Arrow rotation animation */
+.dropdown .arrow {
+  transition: transform 0.3s ease;
+}
+
+.dropdown .arrow.rotated {
+  transform: rotate(90deg);
+}
+
+/* Ensure the dropdown is properly set up for scrolling */
+.dropdown.open {
+  overflow-y: auto;
+  height: 80vh;
+}
+
+/* Visual indicator for overscroll state */
+.dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(to bottom, transparent, var(--active) 80%);
+  opacity: 0;
+  transition: opacity 0.2s ease, height 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* When we reach bottom and detect potential overscroll */
+.dropdown.at-bottom::after {
+  height: 12px;
+  opacity: 0.5;
+}
+
+/* Add this for debugging */
+.dropdown {
+  position: relative !important;
+}
+
+/* Make sure we're targeting the right scrollable element */
+.stack-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stack-layer.active {
+  z-index: 10;
+}
+
+/* Update these styles for animations */
+.dropdown {
+  overflow: hidden !important;
+  will-change: height;
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dropdown.open {
+  height: 80vh !important;
+}
+
+.dropdown.closed {
+  height: 154px !important; /* Header height */
+}
+
+/* Hide scrollbars during animation to prevent jumps */
+.dropdown {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dropdown::-webkit-scrollbar {
+  display: none;
+}
+
+.dropdown-header {
+  min-height: 154px;
+}
+
+/* Add these styles for the overscroll feature */
+.dropdown {
+  position: relative;
+}
+
+/* Overscroll indicator styling */
+.overscroll-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--tertiary);
+  font-family: var(--icon-font-family);
+  font-size: 24px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* Show indicator when at bottom */
+.dropdown.at-bottom .overscroll-indicator {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+/* Add this class to show when we're at the bottom */
+.dropdown.at-bottom {
+  background: linear-gradient(to bottom, var(--base) 0%, var(--base) 95%, rgba(var(--active-rgb), 0.1) 100%);
+}
+
+/* Ensure dropdown has smooth scrolling */
+.dropdown.open {
+  scroll-behavior: smooth;
+}
+
+/* Update/add these styles for enhanced overscroll feedback */
+.dropdown {
+  position: relative;
+}
+
+/* Bottom gradient that appears as you approach the end */
+.dropdown.at-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(var(--active-rgb), 0.05) 50%,
+    rgba(var(--active-rgb), 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+/* More intense gradient when almost ready to trigger */
+.dropdown.overscroll-ready::after {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(var(--active-rgb), 0.1) 50%,
+    rgba(var(--active-rgb), 0.2) 100%
+  );
+}
+
+/* Enhanced overscroll indicator styling */
+.overscroll-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  padding-bottom: 24px;
+}
+
+.indicator-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow-icon {
+  color: var(--tertiary);
+  font-family: var(--icon-font-family);
+  font-size: 32px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.progress-bar {
+  width: 100px;
+  height: 4px;
+  background-color: var(--inactive);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--active);
+  transition: width 0.2s ease;
+  border-radius: 2px;
+}
+
+.hint-text {
+  color: var(--tertiary);
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Change text color when ready to activate */
+.dropdown.overscroll-ready .hint-text {
+  color: var(--active);
+}
+
+/* Ensure dropdown has smooth scrolling */
+.dropdown.open {
+  scroll-behavior: smooth;
 }
 
 

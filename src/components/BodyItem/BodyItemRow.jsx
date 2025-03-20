@@ -1,11 +1,25 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useCallback, useState } from 'react';
 import BodyComponentText from "../BodyComponent/BodyComponentText";
 import BodyComponentImage from "../BodyComponent/BodyComponentImage";
 import { BodyComponentSelectedWork } from "../BodyComponent/BodyComponentSelectedWork";
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import "./BodyItem.css";
 
 export const BodyItemRow = ({ layout, content }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleIntersection = useCallback((entry) => {
+    if (entry.isIntersecting) {
+      setIsVisible(true);
+    }
+  }, []);
+
+  const ref = useIntersectionObserver(handleIntersection, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -10% 0px'
+  });
+
   const getComponentProps = (contentItem) => {
     switch (contentItem.type) {
       case "text":
@@ -31,7 +45,10 @@ export const BodyItemRow = ({ layout, content }) => {
   // Handle array of content items for row layout
   if (Array.isArray(content)) {
     return (
-      <div className={`body-item ${layout}`}>
+      <div 
+        ref={ref}
+        className={`body-item ${layout} ${isVisible ? 'visible' : ''}`}
+      >
         {content.map((contentItem, index) => {
           const componentData = getComponentProps(contentItem);
           if (!componentData) return null;
@@ -53,7 +70,10 @@ export const BodyItemRow = ({ layout, content }) => {
 
   const Component = componentData.component;
   return (
-    <div className={`body-item ${layout}`}>
+    <div 
+      ref={ref}
+      className={`body-item ${layout} ${isVisible ? 'visible' : ''}`}
+    >
       <Component {...componentData.props} />
     </div>
   );

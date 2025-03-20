@@ -1,0 +1,30 @@
+.dropdown-stack {
+  position: relative;
+  width: 100%;
+}
+
+.stack-layer {
+  position: relative;
+  width: 100%;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stack-layer:not(.active):not(.animating-in):not(.animating-out) {
+  display: none;
+}
+
+.stack-layer.active {
+  z-index: 10;
+}
+
+.stack-layer.animating-out {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.stack-layer.animating-in {
+  z-index: 10;
+} 
