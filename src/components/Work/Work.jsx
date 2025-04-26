@@ -370,6 +370,16 @@ export const Work = () => {
         setIsInitialAnimationComplete(true);
       }
 
+      // Add visual feedback during scrolling
+      if (scrollProgress > 0 && scrollProgress < 1) {
+        workContentRef.current.classList.add('scrolling');
+      } else if (scrollProgress >= 1) {
+        workContentRef.current.classList.add('scrolled');
+        workContentRef.current.classList.remove('scrolling');
+      } else {
+        workContentRef.current.classList.remove('scrolling', 'scrolled');
+      }
+
       // Fade out work content
       const contentOpacity = Math.max(0, 1 - scrollProgress);
       workContentRef.current.style.opacity = contentOpacity;

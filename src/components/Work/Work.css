@@ -12,6 +12,19 @@
   transform: translate(-50%, -50%);
   width: 1200px;
   text-align: center;
+  transition: transform 0.1s ease-out, opacity 0.3s ease-out;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.work-content.scrolling {
+  transform: translate(-50%, -50%) scale(0.98);
+  opacity: 0.8;
+}
+
+.work-content.scrolled {
+  transform: translate(-50%, -50%) scale(0.95);
+  opacity: 0.6;
 }
 
 .work-text {
@@ -29,13 +42,15 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
+  width: 100%;
 }
 
 .carousel-item {
-  width: 200px;
-  height: 200px;
+  flex: 1;
+  height: 400px;
   background-color: #ccc; /* Placeholder color */
   border-radius: 8px;
+  object-fit: cover;
 }
 
 .work-experience {

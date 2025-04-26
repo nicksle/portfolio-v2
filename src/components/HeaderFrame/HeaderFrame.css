@@ -62,13 +62,16 @@
   flex-direction: column;
   position: absolute;
   width: 300.75px;
-  height: 150.88px; /* Match section height */
+  height: 150.88px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
   box-sizing: border-box;
-  transition: height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
 }
 
 /* Content container should match the header-frame size exactly in initial state */
@@ -554,16 +557,17 @@
 
 /* When work is clicked, make HeaderFrame fixed and translate up */
 .header-frame.show-work {
-  position: fixed; /* Change to fixed position */
-  top: 50%; /* Keep the percentage-based positioning */
+  position: fixed;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 620px));
+  transform: translate(-50%, -90%);
   transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
 }
 
-.header-frame.show-work .info-2 {
+/* Only target the direct children of info-2 */
+.header-frame.show-work .info-2 > * {
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1.0);
 }
 
 /* Ensure header stays visible */
